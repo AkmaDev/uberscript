@@ -16,6 +16,8 @@ class InsufficientFundsError extends Error {
     super(message)
   }
 }
+type MealDraft = Partial<Meal>
+type MealPreview = Omit<Meal, "calories">
 
 class User {
   id: number
