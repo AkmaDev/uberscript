@@ -1,5 +1,3 @@
-
-
 async function displayMeals() {
   const meals = await fetchMeals()
   const list = document.getElementById("mealList")
@@ -8,7 +6,6 @@ async function displayMeals() {
   afficherUser(user)
 
   if (list) {
-
       for (let i = 0; i < meals.length; i++) {
           const li = document.createElement("li")
           li.textContent = meals[i].name + " - " + meals[i].price + "€"
@@ -27,12 +24,38 @@ async function displayMeals() {
                 console.log(e)
             }
         })
+
+        const btnMenu = document.createElement("button")
+        btnMenu.textContent = "Ajouter au menu"
+        btnMenu.addEventListener("click", function() {
+          menu.push(meals[i])
+          const liMenu = document.createElement("li")
+          liMenu.textContent = meals[i].name
+          const menuList = document.getElementById("menuList")
+          if (menuList) menuList.appendChild(liMenu)
+        })
+        li.appendChild(btnMenu)
         }
     }
 }
 
 displayMeals()
 
+let menu: Meal[] = []
+
+const calculateBtn = document.getElementById("calculateMenuBtn")
+if (calculateBtn) {
+  calculateBtn.addEventListener("click", function() {
+    let total = 0
+    for (let i = 0; i < menu.length; i++) {
+      total = total + menu[i].price
+    }
+    const ht = document.getElementById("menuTotalHT")
+    const ttc = document.getElementById("menuTotalTTC")
+    if (ht) ht.textContent = String(total)
+    if (ttc) ttc.textContent = String(total * 1.2)
+  })
+}
 
 function saveOrders(user: User) {
   localStorage.setItem("orders", JSON.stringify(user.orders))
