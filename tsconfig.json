@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES6",                // Version JS cible : ES6+ (let, const, arrow functions)
-    "module": "ESNext",           // Système de modules : commonjs pour Node, "ESNext" pour front moderne
+    // "module": "ESNext",           // Système de modules : commonjs pour Node, "ESNext" pour front moderne
+    "module": "None",
     "strict": true,                 // Active toutes les vérifications strictes (type checking strict)
     "esModuleInterop": true,        // Permet l'import de modules CommonJS via import syntaxe
     "forceConsistentCasingInFileNames": true, // Empêche les erreurs liées à la casse dans les noms de fichiers

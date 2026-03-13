@@ -11,7 +11,7 @@ type Order = {
   total: number
 }
 
-class InsufficientFundsError extends Error {
+class ErreurSolde extends Error {
   constructor(message: string) {
     super(message)
   }
@@ -34,16 +34,19 @@ class User {
 
   orderMeal(meal: Meal) {
   if (this.wallet < meal.price) {
-    throw new InsufficientFundsError("Fonds insuffisants, prix: " + meal.price + "€, solde: " + this.wallet + "€")
+    throw new ErreurSolde("Fonds insuffisants, prix: " + meal.price + "€, solde: " + this.wallet + "€")
   }
   this.wallet = this.wallet - meal.price
   const order = {
     id: this.orders.length + 1,
     meals: [meal],
     total: meal.price
+    
   }
+  console.log("order:", order)
   this.orders.push(order)
 }
+
 }
 
 
